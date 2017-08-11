@@ -22,6 +22,14 @@ This API can filter returned collections based on provided query parameters. Vir
 
 For example, when requesting a list of movies from the /movies endpoint, you may want to limit these to only those of drama genre. This could be accomplished with a request like `GET /movies?genre=drama`. Here, genre is a query parameter that implements a filter.
 
+#### Date filtering
+
+To request a date we must use comparison operators (e.g. gt, lte, between), date should be passed in YYYY-MM-DD format.
+
+Example:
+`GET /movies?publish_date=gt:2017-08-11`
+`GET /movies?publish_date=beetween:2017-08-09+2017-08-11`
+
 ### Ordering
 
 This API can sort returned collections. A generic query parameter `sort` is used to describe sorting rules. This parameter can take a list of comma separated field, each with a possible unary negative to imply descending sort order.
@@ -559,6 +567,46 @@ Retrieves the category details and all related projects.
 
 + Response 404
 
+# Group Images
+
+## Images [/image]
+
+### Retrieve an image [GET]
+
+Retrieves the image details
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
+
+#### Media url 
+
+The image resource retrieved using `/image` endpoint returns a full URL to retrieve the full size media. 
+
+E.g. `https://api.ddd.it/public/images/logo_magespecialist_header.png`
+
+Is it possible to request a custom sized copy for this image using the base url and filename.
+Image will be resized preserving image size ratio.
+
+E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (Image)
+
++ Response 404
+
 # Data Structures
 
 ## OAuth grant request (object)
@@ -589,6 +637,12 @@ Retrieves the category details and all related projects.
 + surname: `Doe` (string, optional, nullable) - Last name of the user.
 + avatar (string, optional, nullable) - URL to user avatar.
 + user_level: user (string, required) - User level
++ billing_address
+  + street: `221B Baker Street` (string, required) 
+  + zip: `NW1 6XE`(string, required) 
+  + city: `London`(string, required) 
+  + country: `United Kingdom`(string, required) 
+  + vat_id: `UK123123123123121` (string, required) 
 
 ## Agency (User)
 + `company_name`: `Magespecialist` (string, required) - Agency business name
@@ -598,41 +652,72 @@ Retrieves the category details and all related projects.
 + user_level: agency (string, required) - User level
 
 ## Referee (User)
-+ user_level: referee (string, required) - User level
++ is_referee: true (boolean, required) - User level
 
 ## Vote (Resource)
 + vote: 73 (number, required) Vote rating
 + date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
-+ user (Referee)
++ vote_level: user, referee (enum)
++ user (User)
 
 ## Category (Resource)
 + title: `Web/App` (string, required) - category title
 + stub: `web` (string, required) - category stub
 + project_count: 42 (number) - project count
++ images: array[Image]
 
 ## Tag (Resource)
 + title: `video` (string, required) - tag title
 + stub: `video` (string, required) - tag stub
 + project_count: 13 (number) - project count
 
-## Screenshot (Resource)
-+ title: `Page` (string, required) - Image title
-+ filename: `logo_magesepcialist_header.png` (string, required) - Image filename
-+ url: `https://www.magespecialist.it/wp-content/uploads/logo_magesepcialist_header.png` (string, required) - Image URL
+## Image 
++ id: `a6vhAo3FG7t1` (string, fixed) - Short non-sequential url-friendly unique id.
++ title: `Project logo` (string, required) - Image title
++ filename: `logo_magespecialist_header.png` (string, required) - Image filename
++ baseurl: `https://api.ddd.it/public/images/` (string, required) - Full width base url
++ url: `https://api.ddd.it/public/images/logo_magespecialist_header.png` (string, required) - Full Image URL
 
 ## Project (Resource)
++ publish_date: `2016-07-01T15:11:09.553Z` (string)
 + title: `Astonishing Project` (string, required) - project title
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - project HTML description
 + agency (Agency)
 + category (Category)
 + tags (array[Tag])
-+ screenshots (array[Screenshot])
++ images (array[Image])
 + video: `https://player.vimeo.com/video/217499569?portrait=0&badge=0` (string) - the embed video URL
 + referee_rating: `86.5` (number, optional, nullable) - referees average votes
 + user_rating: `79.5` (number, optional, nullable) - users average result
 + total_rating: `81.5` (number, optional, nullable) - current result
++ in_nomination: boolean - true if project is eligible for voting 
 + vote_expiration: `2016-07-01T15:11:09.553Z` (string) - When the project vote will expire.
 + archived_from: `2016-07-01T15:11:09.553Z` (string) - When the project has been archived.
-+ dow_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOW award, this is the award date.
++ is_dow_awarded boolean - DOW award 
++ is_dom_awarded boolean - DOM award
++ is_doy_awarded boolean - DOY award 
++ is_special_awarded boolean - special award 
++ is_authorized: boolean - false if the project has been blocked
++ dom_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOW award, this is the award date.
++ dow_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOM award, this is the award date.
++ doy_award: `2016-07-01T15:11:09.553Z`(string) - If the project has received won the DOY award, this is the award date.
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
 + vote_list (array[Vote])
++ is_payed: boolean - true if the project has completed payment process
++ payment Payment 
+
+## Payment
++ date: `2016-07-01T15:11:09.553Z` (string) - payment date
++ status: completed, canceled (enum)
++ mehtod: 'PayPal' (string, required)
+
+## Pages
++ parent Pages (optional) - Pages hierarchy
++ title: `Lorem ipsum` (string)
++ content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - page HTML content
++ description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium` (string, required) - page abstract
++ stub: `lipsum` (string, required) - page stub
++ main_image: Image
+
+## Posts (Pages)
++ publish_date: `2016-07-01T15:11:09.553Z` (string) - payment date
