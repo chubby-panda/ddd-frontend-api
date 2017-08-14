@@ -471,7 +471,7 @@ Retrieves the details of an existing user.
 
 ### List all projects [GET]
 
-Returns a list of votable projects. The projects are returned based on incremental expire date.
+Returns a list of votable projects. Default sorting is decremental expire date.
 
 |                         |     |
 |-------------------------|-----|
@@ -567,9 +567,131 @@ Retrieves the category details and all related projects.
 
 + Response 404
 
+# Group Votes
+
+## Vote info [/vote/{id}]
+
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - vote id.
+
+### Retrieve a vote [GET]
+
+Retrieves a single vote 
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (Vote)
+
++ Response 404
+
+# Group Pages
+
+## Page [/page/{id}]
+
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - page id.
+    
+### Retrieve a page [GET]
+
+Retrieves the page content
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
+
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (Page)
+
++ Response 404
+
+# Group Posts
+
+## Post list [/post]
+
+### List all posts [GET]
+
+Returns a list of published post, default sorting is decremental publish date.
+
+Retrieves the post content
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (array[Post])
+
+## Post [/post/{id}]
+
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - post id.
+    
+### Retrieve a post [GET]
+
+Retrieves the post content
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
+
+
++ Request
+    + Headers
+
+            Authorization: JWT <token>
+
++ Response 200 (application/json)
+    + Attributes (Post)
+
++ Response 404
+
 # Group Images
 
-## Images [/image]
+## Images [/image/{id}]
+
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - image id.
 
 ### Retrieve an image [GET]
 
@@ -577,7 +699,7 @@ Retrieves the image details
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | No  |
+| Requires authentication | Yes |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -655,6 +777,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + is_referee: true (boolean, required) - User level
 
 ## Vote (Resource)
++ project (Project)
 + vote: 73 (number, required) Vote rating
 + date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
 + vote_level: user, referee (enum)
@@ -702,22 +825,22 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + dow_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOM award, this is the award date.
 + doy_award: `2016-07-01T15:11:09.553Z`(string) - If the project has received won the DOY award, this is the award date.
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
-+ vote_list (array[Vote])
++ vote_list: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids 
 + is_payed: boolean - true if the project has completed payment process
-+ payment Payment 
++ payment (Payment)
 
 ## Payment
 + date: `2016-07-01T15:11:09.553Z` (string) - payment date
 + status: completed, canceled (enum)
 + mehtod: 'PayPal' (string, required)
 
-## Pages
-+ parent Pages (optional) - Pages hierarchy
+## Page
++ parents: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string], optional) - Current Page tree hierarchy
 + title: `Lorem ipsum` (string)
 + content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - page HTML content
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium` (string, required) - page abstract
 + stub: `lipsum` (string, required) - page stub
 + main_image: Image
 
-## Posts (Pages)
+## Post (Page)
 + publish_date: `2016-07-01T15:11:09.553Z` (string) - payment date
