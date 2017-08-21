@@ -176,46 +176,7 @@ If requested version is not available, API SHOULD try to fall back to the next a
 
 # Group API Authentication
 ## OAuth token exchange [/oauth/token]
-Exchange credentials for `access_token`. Supported types:
-
-+ `client_credentials`
-+ [`urn:ietf:params:oauth:grant-type:jwt-bearer`](https://tools.ietf.org/html/draft-jones-oauth-jwt-bearer-03#section-6)
-
-### Exchange credentials for token [POST]
-+ Request
-    + Attributes (OAuth grant request)
-    + Headers
-
-            Authorization: Basic ABCDEF
-
-+ Response 200 (application/json)
-    + Attributes (OAuth valid response)
-
-+ Request
-    + Attributes (OAuth bearer grant request)
-
-+ Response 200 (application/json)
-    + Attributes (OAuth valid response)
-
-## OAuth 2 Bearer Token protected resource [/protected]
-### Status [GET]
-+ Request
-    + Headers
-
-            Authentication: Bearer JWT <token>
-
-+ Response 200 (application/json)
-    + Attributes (Server response)
-
-# Group User Authentication
-
-## User login [/auth/login]
-
-Access tokens are required to access nearly all endpoints of this API.
-
-### Retrieve a token [POST]
-
-Allows to retrieve a valid JSON Web Token for username and password.
+Access tokens are required to access protected endpoints of this API.
 
 **Endpoint information**
 
@@ -224,27 +185,54 @@ Allows to retrieve a valid JSON Web Token for username and password.
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
+### Retrieve a token [POST]
+Allows to retrieve a valid JSON Web Token for username and password.
+
 + Request (application/json)
-    + Attributes
-        + login: `john.doe@mail.com` (string, required) - User email address
-        + password: `QXR0mi38a2` (string, required) - User password
+    + Attributes (OAuth bearer grant request)
+
 
 + Response 200 (application/json)
-    + Attributes
-        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
+    + Attributes (OAuth valid response)
+    
+### Refresh a token [POST /oauth/token/refresh]
+Allows to retrieve a valid JSON Web Token for username and password.
 
-## Refresh a token [POST /auth/refresh-token]
++ Request (application/json)
+    + Attributes (OAuth bearer token refresh)
 
-Allows to retrieve a new, valid JSON Web Token based on a valid JSON Web Token.
 
-Expired tokens MUST NOT be refreshed.
++ Response 200 (application/json)
+    + Attributes (OAuth valid response)
 
-**Endpoint information**
+
+## OAuth 2 Bearer Token protected resource [/protected]
+### Status [GET]
++ Request
+    + Headers
+
+            Authentication: Bearer <token>
+
++ Response 200 (application/json)
+    + Attributes (Server response)
+
+# Group User
+## Users [/users]
+
+### Retrieve a user [GET /users/{id}]
+
+Retrieves the details of an existing user.
 
 |                         |     |
 |-------------------------|-----|
 | Requires authentication | Yes |
 | Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
 
 + Request
     + Headers
@@ -252,12 +240,11 @@ Expired tokens MUST NOT be refreshed.
             Authorization: JWT <token>
 
 + Response 200 (application/json)
-    + Attributes
-        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - New JWT
+    + Attributes (User)
 
-## User registration [/auth/register]
++ Response 404
 
-### Register a new user [POST]
+### Register a new user [POST /users]
 
 Creates a new user account.
 
@@ -287,8 +274,6 @@ After successful registration a confirmation email MUST be sent to provided addr
         + password: `QXR0mi38a2` (string, required) - User password.
 
 + Response 201
-
-# Group User
 
 ## Current user profile [/users/me]
 
@@ -415,55 +400,6 @@ Restores user avatar to the default one.
             Authorization: JWT <token>
 
 + Response 204
-
-## Users [/users]
-
-### List all users [GET]
-
-Returns a list of users. The users are returned in sorter order, with the most recently created user accounts appearing first.
-
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | Yes |
-| Has restricted scope    | No  |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
-
-+ Response 200 (application/json)
-    + Attributes (array[User])
-
-## User [/users/{id}]
-
-+ Parameters
-    + id: `a6vhAo3FG7t1` (string) - id of the user.
-
-### Retrieve a user [GET]
-
-Retrieves the details of an existing user.
-
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | Yes |
-| Has restricted scope    | No  |
-
-**Error codes**
-
-|       |         |                               |
-|-------|---------| ----------------------------- |
-| `400` | `1000`  | Referenced resource not found |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
-
-+ Response 200 (application/json)
-    + Attributes (User)
-
-+ Response 404
 
 # Group Projects
 
@@ -731,18 +667,25 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
 # Data Structures
 
-## OAuth grant request (object)
-+ `grant_type`: `client_credentials` (string, required)
-
 ## OAuth bearer grant request (object)
-+ `grant_type`: `urn:ietf:params:oauth:grant-type:jwt-bearer` (string, required)
-+ assertion: `eyJhbGciOiJIUzI1NiJ9.e30.XmNK3GpH3Ys_7wsYBfq4C3M6goz71I7dTgUkuIa5lyQ` (string, required)
++ `grant_type`: password (enum, required)
++ `client_id`: 3 - shared client id and secret
++ `client_secret`: `mPtOYaGzGTCrAZ4RDy9vjRiZKwqTYl52InFDXVQh`
++ username: `john.doe@mail.com` (string, required) - User email address
++ password: `QXR0mi38a2` (string, required) - User password
 
 ## OAuth valid response (object)
 + `access_token`: `eyJhbGciOiJIUzI1NiJ9.e30.XmNK3GpH3Ys_7wsYBfq4C3M6goz71I7dTgUkuIa5lyQ` (string, required) - valid JWT
-+ scope: all (string, required) - scopes of current token
 + `expires_in`: 300 (number, required)
 + `token_type`: Bearer (string, required)
++ `refresh_token`: `def502004a4146b8d2eb4a036d928321e571ebb01f45b8eafeeef9c822acbf9c5596941cb39b0d8a0aaf00b2507059b7c2c5456167f6b4f49ea00a7ee6540b397df2994c8899e014ac8ee370f22b96ebaaa4e2944f3fa602f1862a12e2090c28c5ffd697ef7382d266f523187c7fa1b696b6837b9dce68a05555af9fb0d509c712c077699cc8914290fc5c81b640a1908a55e1ffdb2b76543011c4289d00ee969d1195aa3fbd8e37d503e1f95bad783fbec53c6d35227cb4924d1e829ed88662feffa6d9d5e502f2025ab526a210474320324c71c1e319a40178b9f9898101d84bc0c5530a18414a356847fb5b5696e609ba840fc116e9484830d13a616c5d145d16e45c0ed28e052cbf94ebc263ff52d54c57fcc9e118bedcf7ecdf10f749129f4b86222fc9f2c3d5951eafb67fafb29c27c1748dc340d509d7d7781ab186b215250d41358dd901ca6bc799a1752a10712e1cba60a705571c9ca07ddd07240b7d` (string, required)
+
+## OAuth bearer token refresh (object)
++ `grant_type`: refresh_token (enum, required)
++ `client_id`: 3 - shared client id and secret
++ `client_secret`: `mPtOYaGzGTCrAZ4RDy9vjRiZKwqTYl52InFDXVQh`
++ `refresh_token`: `def502004a4146b8d2eb4a036d928321e571ebb01f45b8eafeeef9c822acbf9c5596941cb39b0d8a0aaf00b2507059b7c2c5456167f6b4f49ea00a7ee6540b397df2994c8899e014ac8ee370f22b96ebaaa4e2944f3fa602f1862a12e2090c28c5ffd697ef7382d266f523187c7fa1b696b6837b9dce68a05555af9fb0d509c712c077699cc8914290fc5c81b640a1908a55e1ffdb2b76543011c4289d00ee969d1195aa3fbd8e37d503e1f95bad783fbec53c6d35227cb4924d1e829ed88662feffa6d9d5e502f2025ab526a210474320324c71c1e319a40178b9f9898101d84bc0c5530a18414a356847fb5b5696e609ba840fc116e9484830d13a616c5d145d16e45c0ed28e052cbf94ebc263ff52d54c57fcc9e118bedcf7ecdf10f749129f4b86222fc9f2c3d5951eafb67fafb29c27c1748dc340d509d7d7781ab186b215250d41358dd901ca6bc799a1752a10712e1cba60a705571c9ca07ddd07240b7d` (string, required)
+
 
 ## Server response (object)
 + status: ok (string, required)
@@ -813,20 +756,20 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + referee_rating: `86.5` (number, optional, nullable) - referees average votes
 + user_rating: `79.5` (number, optional, nullable) - users average result
 + total_rating: `81.5` (number, optional, nullable) - current result
-+ in_nomination: boolean - true if project is eligible for voting 
++ in_nomination (boolean) - true if project is eligible for voting 
 + vote_expiration: `2016-07-01T15:11:09.553Z` (string) - When the project vote will expire.
 + archived_from: `2016-07-01T15:11:09.553Z` (string) - When the project has been archived.
-+ is_dow_awarded boolean - DOW award 
-+ is_dom_awarded boolean - DOM award
-+ is_doy_awarded boolean - DOY award 
-+ is_special_awarded boolean - special award 
-+ is_authorized: boolean - false if the project has been blocked
++ `is_dow_awarded`: true (boolean) - DOW award 
++ `is_dom_awarded`: false (boolean) - DOM award
++ `is_doy_awarded`: false (boolean) - DOY award 
++ `is_special_awarded`: true (boolean) - special award 
++ `is_authorized`: true (boolean) - false if the project has been blocked
 + dom_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOW award, this is the award date.
 + dow_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOM award, this is the award date.
 + doy_award: `2016-07-01T15:11:09.553Z`(string) - If the project has received won the DOY award, this is the award date.
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
 + vote_list: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids 
-+ is_payed: boolean - true if the project has completed payment process
++ is_payed: true (boolean) - true if the project has completed payment process
 + payment (Payment)
 
 ## Payment
