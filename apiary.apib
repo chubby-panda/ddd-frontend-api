@@ -237,7 +237,7 @@ Retrieves the details of an existing user.
 + Request
     + Headers
 
-            Authorization: JWT <token>
+            Authentication: Bearer <token>
 
 + Response 200 (application/json)
     + Attributes (User)
@@ -293,7 +293,7 @@ Retrieves the profile of the current user.
 + Request
     + Headers
 
-            Authorization: JWT <token>
+            Authentication: Bearer <token>
 
 + Response 200 (application/json)
     + Attributes (User)
@@ -309,10 +309,11 @@ Updates a profile of the current user setting the values of the parameters passe
 | Requires authentication | Yes |
 | Has restricted scope    | No  |
 
-+ Request (application/json)
++ Request
     + Headers
 
-            Authorization: JWT <token>
+            Authentication: Bearer <token>
+
     + Attributes
         + name: `Ben` (string) - First name of the user.
 
@@ -343,7 +344,8 @@ After password is changed all access tokens issued for this user prior to passwo
 + Request (application/json)
     + Headers
 
-            Authorization: JWT <token>
+            Authentication: Bearer <token>
+
     + Attributes
         + old_password: `secret` (string, required)
         + new_password: `$3C6e7` (string, required)
@@ -377,7 +379,7 @@ Either upload the raw binary ( **media** parameter) of the file, or its base64-e
 + Request (multipart/form-data)
     + Headers
 
-            Authorization: JWT <token>
+            Authorization: Bearer <token>
 
 + Response 200
     + Attributes
@@ -394,11 +396,6 @@ Restores user avatar to the default one.
 | Requires authentication | Yes |
 | Has restricted scope    | No  |
 
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
-
 + Response 204
 
 # Group Projects
@@ -411,13 +408,8 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (array[Project])
@@ -433,7 +425,7 @@ Retrieves the details of an existing project.
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -441,11 +433,6 @@ Retrieves the details of an existing project.
 |       |         |                               |
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (Project)
@@ -462,13 +449,8 @@ Returns a category list
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (array[Category])
@@ -484,7 +466,7 @@ Retrieves the category details and all related projects.
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -492,11 +474,6 @@ Retrieves the category details and all related projects.
 |       |         |                               |
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (Category)
@@ -516,7 +493,7 @@ Retrieves a single vote
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -524,11 +501,6 @@ Retrieves a single vote
 |       |         |                               |
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (Vote)
@@ -537,18 +509,15 @@ Retrieves a single vote
 
 # Group Pages
 
-## Page [/page/{id}]
+## Pages [/page/{id}]
 
-+ Parameters
-    + id: `a6vhAo3FG7t1` (string) - page id.
-    
 ### Retrieve a page [GET]
 
 Retrieves the page content
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -557,11 +526,8 @@ Retrieves the page content
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - page id.
 
 + Response 200 (application/json)
     + Attributes (Page)
@@ -580,29 +546,21 @@ Retrieves the post content
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (array[Post])
 
 ## Post [/post/{id}]
 
-+ Parameters
-    + id: `a6vhAo3FG7t1` (string) - post id.
-    
 ### Retrieve a post [GET]
 
 Retrieves the post content
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -611,11 +569,8 @@ Retrieves the post content
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
++ Parameters
+    + id: `a6vhAo3FG7t1` (string) - post id.
 
 + Response 200 (application/json)
     + Attributes (Post)
@@ -635,7 +590,7 @@ Retrieves the image details
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | Yes |
+| Requires authentication | No  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -654,11 +609,6 @@ Is it possible to request a custom sized copy for this image using the base url 
 Image will be resized preserving image size ratio.
 
 E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
-
-+ Request
-    + Headers
-
-            Authorization: JWT <token>
 
 + Response 200 (application/json)
     + Attributes (Image)
@@ -685,7 +635,6 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + `client_id`: 3 - shared client id and secret
 + `client_secret`: `mPtOYaGzGTCrAZ4RDy9vjRiZKwqTYl52InFDXVQh`
 + `refresh_token`: `def502004a4146b8d2eb4a036d928321e571ebb01f45b8eafeeef9c822acbf9c5596941cb39b0d8a0aaf00b2507059b7c2c5456167f6b4f49ea00a7ee6540b397df2994c8899e014ac8ee370f22b96ebaaa4e2944f3fa602f1862a12e2090c28c5ffd697ef7382d266f523187c7fa1b696b6837b9dce68a05555af9fb0d509c712c077699cc8914290fc5c81b640a1908a55e1ffdb2b76543011c4289d00ee969d1195aa3fbd8e37d503e1f95bad783fbec53c6d35227cb4924d1e829ed88662feffa6d9d5e502f2025ab526a210474320324c71c1e319a40178b9f9898101d84bc0c5530a18414a356847fb5b5696e609ba840fc116e9484830d13a616c5d145d16e45c0ed28e052cbf94ebc263ff52d54c57fcc9e118bedcf7ecdf10f749129f4b86222fc9f2c3d5951eafb67fafb29c27c1748dc340d509d7d7781ab186b215250d41358dd901ca6bc799a1752a10712e1cba60a705571c9ca07ddd07240b7d` (string, required)
-
 
 ## Server response (object)
 + status: ok (string, required)
