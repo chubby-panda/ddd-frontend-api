@@ -14,7 +14,7 @@ NOTE: This document is a **work in progress**.
 + Token MUST be provided in `Authorization` header,
 + Toke MUST be provided for each request that requires authentication
 
-## Filtering, Ordering, Pagination & Searching
+## Filtering, Ordering, Pagination
 
 ### Filtering
 
@@ -45,10 +45,6 @@ This API uses the [Link header - RFC 5988](http://tools.ietf.org/html/rfc5988#pa
 An example of a Link header is described in [GitHub documentation](https://developer.github.com/guides/traversing-with-pagination/).
 
 This API returns total count of paged resources in `Total-Count` HTTP header.
-
-### Searching
-
-This API uses a generic parameter `search` to expose a full text search mechanism.
 
 ## HTTP Methods
 
