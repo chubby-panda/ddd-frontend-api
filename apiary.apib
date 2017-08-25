@@ -70,7 +70,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 All exchange of date and time-related data MUST be done according to ISO 8601 standard and stored in UTC.
 
-When returning date and time-related data `YYYY-MM-DDThh:mm:ss.SSSZ` format MUST be used.
+When returning date and time-related data `YYYY-MM-DDThh:mm:ss` format MUST be used.
 
 ## Resource IDs
 
@@ -637,8 +637,8 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
 ## Resource (object)
 + id: `a6vhAo3FG7t1` (string, fixed) - Short non-sequential url-friendly unique id.
-+ createdAt: `2016-07-01T15:11:09.553Z` (string) - When this resource was created.
-+ updatedAt: `2016-07-01T15:11:09.553Z` (string) - When this resource was last updated.
++ createdAt: `2016-07-01T15:11:09` (string) - When this resource was created.
++ updatedAt: `2016-07-01T15:11:09` (string) - When this resource was last updated.
 
 ## User (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
@@ -690,7 +690,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + url: `https://api.ddd.it/public/images/logo_magespecialist_header.png` (string, required) - Full Image URL
 
 ## Project (Resource)
-+ publish_date: `2016-07-01T15:11:09.553Z` (string)
++ publish_date: `2016-07-01T15:11:09` (string)
 + title: `Astonishing Project` (string, required) - project title
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - project HTML description
 + agency (Agency)
@@ -702,23 +702,23 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + user_rating: `79.5` (number, optional, nullable) - users average result
 + total_rating: `81.5` (number, optional, nullable) - current result
 + in_nomination (boolean) - true if project is eligible for voting 
-+ vote_expiration: `2016-07-01T15:11:09.553Z` (string) - When the project vote will expire.
-+ archived_from: `2016-07-01T15:11:09.553Z` (string) - When the project has been archived.
++ vote_expiration: `2016-07-01T15:11:09` (string) - When the project vote will expire.
++ archived_from: `2016-07-01T15:11:09` (string) - When the project has been archived.
 + `is_dow_awarded`: true (boolean) - DOW award 
 + `is_dom_awarded`: false (boolean) - DOM award
 + `is_doy_awarded`: false (boolean) - DOY award 
 + `is_special_awarded`: true (boolean) - special award 
 + `is_authorized`: true (boolean) - false if the project has been blocked
-+ dom_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOW award, this is the award date.
-+ dow_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received won the DOM award, this is the award date.
-+ doy_award: `2016-07-01T15:11:09.553Z`(string) - If the project has received won the DOY award, this is the award date.
++ dom_award: `2016-07-01T15:11:09` (string) - If the project has received won the DOW award, this is the award date.
++ dow_award: `2016-07-01T15:11:09` (string) - If the project has received won the DOM award, this is the award date.
++ doy_award: `2016-07-01T15:11:09`(string) - If the project has received won the DOY award, this is the award date.
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
 + vote_list: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids 
 + is_payed: true (boolean) - true if the project has completed payment process
 + payment (Payment)
 
 ## Payment
-+ date: `2016-07-01T15:11:09.553Z` (string) - payment date
++ date: `2016-07-01T15:11:09` (string) - payment date
 + status: completed, canceled (enum)
 + mehtod: 'PayPal' (string, required)
 
@@ -731,4 +731,4 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + main_image: Image
 
 ## Post (Page)
-+ publish_date: `2016-07-01T15:11:09.553Z` (string) - payment date
++ publish_date: `2016-07-01T15:11:09` (string) - payment date
