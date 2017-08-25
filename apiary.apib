@@ -21,14 +21,14 @@ NOTE: This document is a **work in progress**.
 This API can filter returned collections based on provided query parameters. Virtually any model field can be used as a filter.
 
 For example, when requesting a list of movies from the /movies endpoint, you may want to limit these to only those of drama genre. This could be accomplished with a request like `GET /movies?genre=drama`. Here, genre is a query parameter that implements a filter.
-
+tw
 #### Date filtering
 
 To request a date we must use comparison operators (e.g. gt, lte, between), date should be passed in YYYY-MM-DD format.
 
 Example:
 `GET /movies?publish_date=gt:2017-08-11`
-`GET /movies?publish_date=beetween:2017-08-09+2017-08-11`
+`GET /movies?publish_date=beetween:2017-08-09^2017-08-11`
 
 ### Ordering
 
