@@ -78,7 +78,7 @@ This API uses short non-sequential url-friendly unique ids. Every resource id MU
 
 ### Example
 `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`
-en
+
 ## Status Codes and Errors
 
 This API uses HTTP status codes to communicate with the API consumer.
@@ -626,7 +626,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + status: ok (string, required)
 
 ## Resource (object)
-+ id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, fixed) - Short non-sequential url-friendly unique id.
++ id (string, required) - Short non-sequential url-friendly unique id.
 + createdAt: `2016-07-01T15:11:09` (string) - When this resource was created.
 + updatedAt: `2016-07-01T15:11:09` (string) - When this resource was last updated.
 
@@ -693,7 +693,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + total_rating: `81.5` (number, optional, nullable) - current result
 + in_nomination (boolean) - true if project is eligible for voting
 + vote_expiration: `2016-07-01T15:11:09` (string) - When the project vote will expire.
-+ archived_from: `2016-07-01T15:11:09` (string) - When the project has been archived.
++ archived_from `2016-07-01T15:11:09` (string) - When the project has been archived.
 + `is_dow_awarded`: true (boolean) - DOW award
 + `is_dom_awarded`: false (boolean) - DOM award
 + `is_doy_awarded`: false (boolean) - DOY award
