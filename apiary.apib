@@ -205,7 +205,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
 # Group User
 ## Users [/users]
 
-### Retrieve a user [GET /users/{id}]
+### Retrieve a user [GET /api/users/{id}]
 
 Retrieves the details of an existing user.
 
@@ -230,13 +230,13 @@ Retrieves the details of an existing user.
 
 + Response 404
 
-### Register a new user [POST /users]
+### Register a new user [POST /api/users]
 
 Creates a new user account.
 
 + Provided email address MUST be unique.
 + Passwords MUST have at least six characters.
-+ Passwords MUST NOT contain the user name or parts of the userâs full name, such as his first name.
++ Passwords MUST NOT contain the user name or parts of the user??????s full name, such as his first name.
 + Passwords MUST use at least three of the four available character types: lowercase letters, uppercase letters, numbers, and symbols.
 
 After successful registration a confirmation email MUST be sent to provided address.
@@ -261,7 +261,7 @@ After successful registration a confirmation email MUST be sent to provided addr
 
 + Response 201
 
-## Current user profile [/users/me]
+## Current user profile [/api/users/me]
 
 Current user MUST be identifed by JWT provided in request header.
 
@@ -306,7 +306,7 @@ Updates a profile of the current user setting the values of the parameters passe
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (User)
 
-## User password [/users/me/password]
+## User password [/api/users/me/password]
 
 ### Change a password of the current user [PUT]
 
@@ -340,7 +340,7 @@ After password is changed all access tokens issued for this user prior to passwo
     + Attributes
         + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JSON Web Token.
 
-## User avatar [/users/me/avatar]
+## User avatar [/api/users/me/avatar]
 
 ### Set user avatar [POST]
 
@@ -386,7 +386,7 @@ Restores user avatar to the default one.
 
 # Group Projects
 
-## Projects [/projects]
+## Projects [/api/projects]
 
 ### List all projects [GET]
 
@@ -400,10 +400,10 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Project])
 
-## Project [/projects/{id}]
+## Project [/api/projects/{id}]
 
 + Parameters
-    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - id of the project.
+    + id: `65973ae5-9ad1-3f16-aca2-3ba9e950ce13` (string) - id of the project.
 
 ### Retrieve a project [GET]
 
@@ -427,7 +427,7 @@ Retrieves the details of an existing project.
 
 # Group Categories
 
-## Category [/category]
+## Category [/api/category]
 
 ### Category list [GET]
 
@@ -441,7 +441,7 @@ Returns a category list
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Category])
 
-## Category detail [/category/{id}]
+## Category detail [/api/category/{id}]
 
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - category id.
@@ -468,7 +468,7 @@ Retrieves the category details and all related projects.
 
 # Group Votes
 
-## Vote info [/vote/{id}]
+## Vote info [/api/vote/{id}]
 
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - vote id.
@@ -479,7 +479,7 @@ Retrieves a single vote
 
 |                         |     |
 |-------------------------|-----|
-| Requires authentication | No  |
+| Requires authentication | Yes  |
 | Has restricted scope    | No  |
 
 **Error codes**
@@ -495,7 +495,7 @@ Retrieves a single vote
 
 # Group Pages
 
-## Pages [/page/{id}]
+## Pages [/api/page/{id}]
 
 ### Retrieve a page [GET]
 
@@ -522,7 +522,7 @@ Retrieves the page content
 
 # Group Posts
 
-## Post list [/post]
+## Post list [/api/post]
 
 ### List all posts [GET]
 
@@ -538,7 +538,7 @@ Retrieves the post content
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Post])
 
-## Post [/post/{id}]
+## Post [/api/post/{id}]
 
 ### Retrieve a post [GET]
 
@@ -565,7 +565,7 @@ Retrieves the post content
 
 # Group Images
 
-## Images [/image/{id}]
+## Images [/api/image/{id}]
 
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - image id.
