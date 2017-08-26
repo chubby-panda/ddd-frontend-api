@@ -178,7 +178,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
     + Attributes (OAuth bearer grant request)
 
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (OAuth valid response)
 
 ### Refresh a token [POST /oauth/token/refresh]
@@ -188,7 +188,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
     + Attributes (OAuth bearer token refresh)
 
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (OAuth valid response)
 
 
@@ -199,7 +199,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
 
             Authentication: Bearer <token>
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Server response)
 
 # Group User
@@ -225,7 +225,7 @@ Retrieves the details of an existing user.
 
             Authentication: Bearer <token>
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (User)
 
 + Response 404
@@ -236,7 +236,7 @@ Creates a new user account.
 
 + Provided email address MUST be unique.
 + Passwords MUST have at least six characters.
-+ Passwords MUST NOT contain the user name or parts of the user’s full name, such as his first name.
++ Passwords MUST NOT contain the user name or parts of the userâs full name, such as his first name.
 + Passwords MUST use at least three of the four available character types: lowercase letters, uppercase letters, numbers, and symbols.
 
 After successful registration a confirmation email MUST be sent to provided address.
@@ -281,7 +281,7 @@ Retrieves the profile of the current user.
 
             Authentication: Bearer <token>
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (User)
 
 ### Partialy update a profile of the current user [PATCH]
@@ -303,7 +303,7 @@ Updates a profile of the current user setting the values of the parameters passe
     + Attributes
         + name: `Ben` (string) - First name of the user.
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (User)
 
 ## User password [/users/me/password]
@@ -397,7 +397,7 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Project])
 
 ## Project [/projects/{id}]
@@ -420,7 +420,7 @@ Retrieves the details of an existing project.
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Project)
 
 + Response 404
@@ -438,7 +438,7 @@ Returns a category list
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Category])
 
 ## Category detail [/category/{id}]
@@ -461,7 +461,7 @@ Retrieves the category details and all related projects.
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Category)
 
 + Response 404
@@ -488,7 +488,7 @@ Retrieves a single vote
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Vote)
 
 + Response 404
@@ -515,7 +515,7 @@ Retrieves the page content
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - page id.
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Page)
 
 + Response 404
@@ -535,7 +535,7 @@ Retrieves the post content
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Post])
 
 ## Post [/post/{id}]
@@ -558,7 +558,7 @@ Retrieves the post content
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - post id.
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Post)
 
 + Response 404
@@ -596,7 +596,7 @@ Image will be resized preserving image size ratio.
 
 E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=UTF-8)
     + Attributes (Image)
 
 + Response 404
