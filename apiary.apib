@@ -6,7 +6,7 @@ API collection to view and submit projects, consult archive and send votes
 
 NOTE: This document is a **work in progress**.
 
-# API use and format specification 
+# API use and format specification
 
 ## Authentication
 *DDD frontend API* uses [OAuth Authorization](https://oauth.net). First you create a new (or acquire existing) OAuth token using Basic Authentication. After you have acquired your token you can use it to access other resources within token' scope.
@@ -21,7 +21,7 @@ NOTE: This document is a **work in progress**.
 This API can filter returned collections based on provided query parameters. Virtually any model field can be used as a filter.
 
 For example, when requesting a list of movies from the /movies endpoint, you may want to limit these to only those of drama genre. This could be accomplished with a request like `GET /movies?genre=drama`. Here, genre is a query parameter that implements a filter.
-tw
+
 #### Date filtering
 
 To request a date we must use comparison operators (e.g. gt, lte, between), date should be passed in YYYY-MM-DD format.
@@ -77,7 +77,7 @@ When returning date and time-related data `YYYY-MM-DDThh:mm:ss` format MUST be u
 This API uses short non-sequential url-friendly unique ids. Every resource id MUST consists of 32 url-friendly characters: `A-Z`, `a-z`, `0-9`, `_` and `-`.
 
 ### Example
-`a6vhAo3FG7t1`
+`6eb1cb93-9874-359a-9f32-ca76e8adaa4e`
 en
 ## Status Codes and Errors
 
@@ -180,7 +180,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
 
 + Response 200 (application/json)
     + Attributes (OAuth valid response)
-    
+
 ### Refresh a token [POST /oauth/token/refresh]
 Allows to retrieve a valid JSON Web Token for username and password.
 
@@ -403,7 +403,7 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 ## Project [/projects/{id}]
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - id of the project.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - id of the project.
 
 ### Retrieve a project [GET]
 
@@ -444,7 +444,7 @@ Returns a category list
 ## Category detail [/category/{id}]
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - category id.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - category id.
 
 ### Retrieve a category [GET]
 
@@ -471,11 +471,11 @@ Retrieves the category details and all related projects.
 ## Vote info [/vote/{id}]
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - vote id.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - vote id.
 
 ### Retrieve a vote [GET]
 
-Retrieves a single vote 
+Retrieves a single vote
 
 |                         |     |
 |-------------------------|-----|
@@ -513,7 +513,7 @@ Retrieves the page content
 | `400` | `1000`  | Referenced resource not found |
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - page id.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - page id.
 
 + Response 200 (application/json)
     + Attributes (Page)
@@ -556,7 +556,7 @@ Retrieves the post content
 | `400` | `1000`  | Referenced resource not found |
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - post id.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - post id.
 
 + Response 200 (application/json)
     + Attributes (Post)
@@ -568,7 +568,7 @@ Retrieves the post content
 ## Images [/image/{id}]
 
 + Parameters
-    + id: `a6vhAo3FG7t1` (string) - image id.
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - image id.
 
 ### Retrieve an image [GET]
 
@@ -585,9 +585,9 @@ Retrieves the image details
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
-#### Media url 
+#### Media url
 
-The image resource retrieved using `/image` endpoint returns a full URL to retrieve the full size media. 
+The image resource retrieved using `/image` endpoint returns a full URL to retrieve the full size media.
 
 E.g. `https://api.ddd.it/public/images/logo_magespecialist_header.png`
 
@@ -626,7 +626,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + status: ok (string, required)
 
 ## Resource (object)
-+ id: `a6vhAo3FG7t1` (string, fixed) - Short non-sequential url-friendly unique id.
++ id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, fixed) - Short non-sequential url-friendly unique id.
 + createdAt: `2016-07-01T15:11:09` (string) - When this resource was created.
 + updatedAt: `2016-07-01T15:11:09` (string) - When this resource was last updated.
 
@@ -638,11 +638,11 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + avatar (string, optional, nullable) - URL to user avatar.
 + user_level: user (string, required) - User level
 + billing_address
-  + street: `221B Baker Street` (string, required) 
-  + zip: `NW1 6XE`(string, required) 
-  + city: `London`(string, required) 
-  + country: `United Kingdom`(string, required) 
-  + vat_id: `UK123123123123121` (string, required) 
+  + street: `221B Baker Street` (string, required)
+  + zip: `NW1 6XE`(string, required)
+  + city: `London`(string, required)
+  + country: `United Kingdom`(string, required)
+  + vat_id: `UK123123123123121` (string, required)
 
 ## Agency (User)
 + `company_name`: `Magespecialist` (string, required) - Agency business name
@@ -672,8 +672,8 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + stub: `video` (string, required) - tag stub
 + project_count: 13 (number) - project count
 
-## Image 
-+ id: `a6vhAo3FG7t1` (string, fixed) - Short non-sequential url-friendly unique id.
+## Image
++ id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, fixed) - Short non-sequential url-friendly unique id.
 + title: `Project logo` (string, required) - Image title
 + filename: `logo_magespecialist_header.png` (string, required) - Image filename
 + baseurl: `https://api.ddd.it/public/images/` (string, required) - Full width base url
@@ -691,19 +691,19 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + referee_rating: `86.5` (number, optional, nullable) - referees average votes
 + user_rating: `79.5` (number, optional, nullable) - users average result
 + total_rating: `81.5` (number, optional, nullable) - current result
-+ in_nomination (boolean) - true if project is eligible for voting 
++ in_nomination (boolean) - true if project is eligible for voting
 + vote_expiration: `2016-07-01T15:11:09` (string) - When the project vote will expire.
 + archived_from: `2016-07-01T15:11:09` (string) - When the project has been archived.
-+ `is_dow_awarded`: true (boolean) - DOW award 
++ `is_dow_awarded`: true (boolean) - DOW award
 + `is_dom_awarded`: false (boolean) - DOM award
-+ `is_doy_awarded`: false (boolean) - DOY award 
-+ `is_special_awarded`: true (boolean) - special award 
++ `is_doy_awarded`: false (boolean) - DOY award
++ `is_special_awarded`: true (boolean) - special award
 + `is_authorized`: true (boolean) - false if the project has been blocked
 + dom_award: `2016-07-01T15:11:09` (string) - If the project has received won the DOW award, this is the award date.
 + dow_award: `2016-07-01T15:11:09` (string) - If the project has received won the DOM award, this is the award date.
 + doy_award: `2016-07-01T15:11:09`(string) - If the project has received won the DOY award, this is the award date.
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
-+ vote_list: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids 
++ vote_list: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids
 + is_payed: true (boolean) - true if the project has completed payment process
 + payment (Payment)
 
@@ -713,7 +713,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + mehtod: 'PayPal' (string, required)
 
 ## Page
-+ parents: `a6vhAo3FG7t1`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string], optional) - Current Page tree hierarchy
++ parents: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string], optional) - Current Page tree hierarchy
 + title: `Lorem ipsum` (string)
 + content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - page HTML content
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium` (string, required) - page abstract
