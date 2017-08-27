@@ -175,6 +175,10 @@ Access tokens are required to access protected endpoints of this API.
 Allows to retrieve a valid JSON Web Token for username and password.
 
 + Request (application/json)
+    + Headers
+    
+            Accept: application/json
+                
     + Attributes (OAuth bearer grant request)
 
 
@@ -185,6 +189,10 @@ Allows to retrieve a valid JSON Web Token for username and password.
 Allows to retrieve a valid JSON Web Token for username and password.
 
 + Request (application/json)
+    + Headers
+    
+            Accept: application/json
+                
     + Attributes (OAuth bearer token refresh)
 
 
@@ -196,7 +204,8 @@ Allows to retrieve a valid JSON Web Token for username and password.
 ### Status [GET]
 + Request
     + Headers
-
+    
+            Accept: application/json
             Authentication: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
@@ -222,7 +231,8 @@ Retrieves the details of an existing user.
 
 + Request
     + Headers
-
+    
+            Accept: application/json
             Authentication: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
@@ -255,6 +265,10 @@ After successful registration a confirmation email MUST be sent to provided addr
 | `400` | `3001` | User already exists                         |
 
 + Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            
     + Attributes
         + email: `john.doe@mail.com` (string, required) - E-mail address.
         + password: `QXR0mi38a2` (string, required) - User password.
@@ -278,7 +292,8 @@ Retrieves the profile of the current user.
 
 + Request
     + Headers
-
+    
+            Accept: application/json
             Authentication: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
@@ -297,7 +312,8 @@ Updates a profile of the current user setting the values of the parameters passe
 
 + Request
     + Headers
-
+    
+            Accept: application/json
             Authentication: Bearer <token>
 
     + Attributes
@@ -329,7 +345,8 @@ After password is changed all access tokens issued for this user prior to passwo
 
 + Request (application/json)
     + Headers
-
+    
+            Accept: application/json
             Authentication: Bearer <token>
 
     + Attributes
@@ -364,7 +381,8 @@ Either upload the raw binary ( **media** parameter) of the file, or its base64-e
 
 + Request (multipart/form-data)
     + Headers
-
+    
+            Accept: application/json
             Authorization: Bearer <token>
 
 + Response 200
@@ -397,6 +415,11 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
++ Request 
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Project])
 
@@ -420,6 +443,11 @@ Retrieves the details of an existing project.
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
++ Request
+    + Headers
+    
+            Accept: application/json
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Project)
 
@@ -438,11 +466,20 @@ Returns a category list
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Category])
 
 ## Category detail [/api/category/{id}]
-
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - category id.
 
@@ -460,7 +497,11 @@ Retrieves the category details and all related projects.
 |       |         |                               |
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
-
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Category)
 
@@ -469,7 +510,11 @@ Retrieves the category details and all related projects.
 # Group Votes
 
 ## Vote info [/api/vote/{id}]
-
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - vote id.
 
@@ -487,7 +532,11 @@ Retrieves a single vote
 |       |         |                               |
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
-
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Vote)
 
@@ -512,6 +561,11 @@ Retrieves the page content
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - page id.
 
@@ -535,6 +589,11 @@ Retrieves the post content
 | Requires authentication | No  |
 | Has restricted scope    | No  |
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Post])
 
@@ -555,6 +614,11 @@ Retrieves the post content
 |-------|---------| ----------------------------- |
 | `400` | `1000`  | Referenced resource not found |
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - post id.
 
@@ -567,6 +631,11 @@ Retrieves the post content
 
 ## Images [/api/image/{id}]
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - image id.
 
@@ -596,6 +665,11 @@ Image will be resized preserving image size ratio.
 
 E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
++ Request
+    + Headers
+    
+            Accept: application/json
+            
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Image)
 
