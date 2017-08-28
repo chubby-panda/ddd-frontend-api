@@ -269,11 +269,7 @@ After successful registration a confirmation email MUST be sent to provided addr
     
             Accept: application/json
             
-    + Attributes
-        + email: `john.doe@mail.com` (string, required) - E-mail address.
-        + password: `QXR0mi38a2` (string, required) - User password.
-        + name: `John`
-        
+    + Attributes (User Request)
 
 + Response 201
 
@@ -712,6 +708,24 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + createdAt: `2016-07-01T15:11:09` (string) - When this resource was created.
 + updatedAt: `2016-07-01T15:11:09` (string) - When this resource was last updated.
 
+## User Request (object)
++ email: `john.whatson@mail.com` (string, required) - Unique email address of the user.
++ username: `johnwatson` (string, required) - Username
++ name: `John` (string, optional, nullable) - First name of the user.
++ lastname: `Watson` (string, optional, nullable) - Last name of the user.
++ avatar (string, optional, nullable) - URL to user avatar.
++ billing_address
+  + street: `221B Baker Street` (string, required)
+  + zip: `NW1 6XE`(string, required)
+  + city: `London`(string, required)
+  + country: `United Kingdom`(string, required)
+  + vat_id: `UK123123123123121` (string, required)
+  + `company_name`: `Magespecialist` (string, required) - Agency business name
++ is_agency:`true` boolean
++ `company_name`: `Holmes & Watson` (string, required) - Agency business name
++ website: `https://it.wikipedia.org/wiki/Arthur_Conan_Doyle` (string, required) Agency website URL
++ description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
+
 ## User (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
 + username: `johndoe` (string, required) - Username
@@ -803,4 +817,4 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + main_image: Image
 
 ## Post (Page)
-+ publish_date: `2016-07-01T15:11:09` (string) - payment date
++ publish_date: `2016-07-01T15:11:09` (string) - payment dat
