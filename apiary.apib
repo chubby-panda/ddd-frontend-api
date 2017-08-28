@@ -272,6 +272,8 @@ After successful registration a confirmation email MUST be sent to provided addr
     + Attributes
         + email: `john.doe@mail.com` (string, required) - E-mail address.
         + password: `QXR0mi38a2` (string, required) - User password.
+        + name: `John`
+        
 
 + Response 201
 
@@ -714,7 +716,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
 + username: `johndoe` (string, required) - Username
 + name: `John` (string, optional, nullable) - First name of the user.
-+ surname: `Doe` (string, optional, nullable) - Last name of the user.
++ lastname: `Doe` (string, optional, nullable) - Last name of the user.
 + avatar (string, optional, nullable) - URL to user avatar.
 + user_level: user (string, required) - User level
 + billing_address
