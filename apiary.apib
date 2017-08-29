@@ -722,7 +722,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
   + country: `United Kingdom`(string, required)
   + vat_id: `UK123123123123121` (string, required)
   + `company_name`: `Magespecialist` (string, required) - Agency business name
-+ is_agency:`true` boolean
++ user_level:`agency` (string, required)
 + `company_name`: `Holmes & Watson` (string, required) - Agency business name
 + website: `https://it.wikipedia.org/wiki/Arthur_Conan_Doyle` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
@@ -746,6 +746,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + username: `johndoe` (string, required) - Username
 + name: `John` (string, optional, nullable) - First name of the user.
 + lastname: `Doe` (string, optional, nullable) - Last name of the user.
++ role: `Web Designer` (string, required) - User work role
 + avatar (string, optional, nullable) - URL to user avatar.
 + user_level: user (string, required) - User level
 
@@ -757,7 +758,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + user_level: agency (string, required) - User level
 
 ## Referee (User info)
-+ is_referee: true (boolean, required) - User level
++ is_referee: true (boolean, required) - Is referee
 
 ## Vote (Resource)
 + project (Project)
@@ -788,6 +789,8 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + publish_date: `2016-07-01T15:11:09` (string)
 + title: `Astonishing Project` (string, required) - project title
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - project HTML description
++ stub: `web` (string, required) - category stub
++ website: `https://www.magespecialist.it` (string, required) Agency website URL
 + agency (Agency)
 + category (Category)
 + tags (array[Tag])
@@ -810,6 +813,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + special_award: `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
 + vote_list: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids
 + is_payed: true (boolean) - true if the project has completed payment process
+
 + payment (Payment)
 
 ## Payment
