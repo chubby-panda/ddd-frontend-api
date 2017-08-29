@@ -236,7 +236,7 @@ Retrieves the details of an existing user.
             Authentication: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
-    + Attributes (User)
+    + Attributes (User info)
 
 + Response 404
 
@@ -295,7 +295,7 @@ Retrieves the profile of the current user.
             Authentication: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
-    + Attributes (User)
+    + Attributes (User full)
 
 ### Partialy update a profile of the current user [PATCH]
 
@@ -318,7 +318,7 @@ Updates a profile of the current user setting the values of the parameters passe
         + name: `Ben` (string) - First name of the user.
 
 + Response 200 (application/json; charset=UTF-8)
-    + Attributes (User)
+    + Attributes (User full)
 
 ## User password [/api/users/me/password]
 
@@ -727,7 +727,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + website: `https://it.wikipedia.org/wiki/Arthur_Conan_Doyle` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
 
-## User (Resource)
+## User full (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
 + username: `johndoe` (string, required) - Username
 + name: `John` (string, optional, nullable) - First name of the user.
@@ -741,14 +741,22 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
   + country: `United Kingdom`(string, required)
   + vat_id: `UK123123123123121` (string, required)
 
-## Agency (User)
+## User info (Resource)
++ email: `john.doe@mail.com` (string, required) - Unique email address of the user.
++ username: `johndoe` (string, required) - Username
++ name: `John` (string, optional, nullable) - First name of the user.
++ lastname: `Doe` (string, optional, nullable) - Last name of the user.
++ avatar (string, optional, nullable) - URL to user avatar.
++ user_level: user (string, required) - User level
+
+## Agency (User info)
 + `company_name`: `Magespecialist` (string, required) - Agency business name
 + logo: `https://www.magespecialist.it/wp-content/uploads/logo_magesepcialist_header.png` (string, optional, nullable) - URL to company logo.
 + website: `https://www.magespecialist.it` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
 + user_level: agency (string, required) - User level
 
-## Referee (User)
+## Referee (User info)
 + is_referee: true (boolean, required) - User level
 
 ## Vote (Resource)
@@ -756,7 +764,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + vote: 73 (number, required) Vote rating
 + date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
 + vote_level: user, referee (enum)
-+ user (User)
++ user (User info)
 
 ## Category (Resource)
 + title: `Web/App` (string, required) - category title
