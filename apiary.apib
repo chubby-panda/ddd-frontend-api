@@ -240,7 +240,7 @@ Retrieves the details of an existing user.
 
 + Response 404
 
-### Register a new user [POST /api/users]
+### Register a new user [POST /api/register]
 
 Creates a new user account.
 
@@ -273,7 +273,7 @@ After successful registration a confirmation email MUST be sent to provided addr
 
 + Response 201 (application/json; charset=UTF-8)
 
-## Current user profile [/api/users/me]
+## Current user profile [/api/profile]
 
 Current user MUST be identifed by JWT provided in request header.
 
@@ -320,7 +320,7 @@ Updates a profile of the current user setting the values of the parameters passe
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (User full)
 
-## User password [/api/users/me/password]
+## User password [/api/profile/password]
 
 ### Change a password of the current user [PUT]
 
@@ -355,7 +355,7 @@ After password is changed all access tokens issued for this user prior to passwo
     + Attributes
         + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JSON Web Token.
 
-## User avatar [/api/users/me/avatar]
+## User avatar [/api/profile/avatar]
 
 ### Set user avatar [POST]
 
