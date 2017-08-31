@@ -235,6 +235,9 @@ Retrieves the details of an existing user.
             Accept: application/json
             Authentication: Bearer <token>
 
++ Parameters
+    + id: `65973ae5-9ad1-3f16-aca2-3ba9e950ce13` (string) - user id.
+    
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (User info)
 
@@ -351,9 +354,7 @@ After password is changed all access tokens issued for this user prior to passwo
         + old_password: `secret` (string, required)
         + new_password: `$3C6e7` (string, required)
 
-+ Response 200
-    + Attributes
-        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (string) - New JSON Web Token.
++ Response 204
 
 ## User avatar [/api/profile/avatar]
 
@@ -710,7 +711,6 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
 ## User Request (object)
 + email: `john.whatson@mail.com` (string, required) - Unique email address of the user.
-+ username: `johnwatson` (string, required) - Username
 + password: `Eey7fEkvTR4KHtTuAjb` (string, required) - Password
 + name: `John` (string, optional, nullable) - First name of the user.
 + lastname: `Watson` (string, optional, nullable) - Last name of the user.
@@ -729,7 +729,6 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
 ## User full (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
-+ username: `johndoe` (string, required) - Username
 + name: `John` (string, optional, nullable) - First name of the user.
 + lastname: `Doe` (string, optional, nullable) - Last name of the user.
 + avatar (string, optional, nullable) - URL to user avatar.
@@ -743,7 +742,6 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 
 ## User info (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
-+ username: `johndoe` (string, required) - Username
 + name: `John` (string, optional, nullable) - First name of the user.
 + lastname: `Doe` (string, optional, nullable) - Last name of the user.
 + role: `Web Designer` (string, required) - User work role
