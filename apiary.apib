@@ -275,6 +275,7 @@ After successful registration a confirmation email MUST be sent to provided addr
     + Attributes (User Request)
 
 + Response 201 (application/json; charset=UTF-8)
+    + Attributes (User info)
 
 ## Current user profile [/api/profile]
 
@@ -742,6 +743,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + name: `John` (string, optional, nullable) - First name of the user.
 + lastname: `Watson` (string, optional, nullable) - Last name of the user.
 + avatar (string, optional, nullable) - URL to user avatar.
++ role: `Physician` (string, required) 
 + billing_address
   + street: `221B Baker Street` (string, required)
   + zip: `NW1 6XE`(string, required)
