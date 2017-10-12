@@ -691,12 +691,12 @@ Retrieves the image details
 
 The image resource retrieved using `/image` endpoint returns a full URL to retrieve the full size media.
 
-E.g. `https://api.ddd.it/public/images/logo_magespecialist_header.png`
+E.g. `http://ddd.app/images/avatar/5b141780-af33-11e7-b107-33f3ff5354b7.jpg`
 
-Is it possible to request a custom sized copy for this image using the base url and filename.
+Is it possible to request a custom sized copy for this image using the baseurl and filename.
 Image will be resized preserving image size ratio.
 
-E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
+E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-200x200.jpg`
 
 + Request
     + Headers
@@ -809,8 +809,7 @@ E.g. `https://api.ddd.it/public/images/200x200/logo_magespecialist_header.png`
 + stub: `video` (string, required) - tag stub
 + project_count: 13 (number) - project count
 
-## Image
-+ id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, fixed) - Short non-sequential url-friendly unique id.
+## Image (Resource)
 + title: `Project logo` (string, required) - Image title
 + filename: `logo_magespecialist_header.png` (string, required) - Image filename
 + baseurl: `https://api.ddd.it/public/images/` (string, required) - Full width base url
