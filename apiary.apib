@@ -357,57 +357,6 @@ After password is changed all access tokens issued for this user prior to passwo
 
 + Response 204
 
-## User avatar [/api/profile/avatar]
-
-### Set user avatar [POST]
-
-Sets user avatar.
-
-Either upload the raw binary ( **media** parameter) of the file, or its base64-encoded contents ( **media_data** parameter). Use raw binary when possible, because base64 encoding results in larger file sizes.
-
-**Endpoint information**
-
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | Yes |
-| Has restricted scope    | No  |
-
-**Error codes**
-
-|       |         |                       |
-|-------|---------| --------------------- |
-| `400` | `2001`  | File is too large     |
-| `400` | `2002`  | Unsupported file type |
-
-+ Request (multipart/form-data)
-    + Headers
-    
-            Accept: application/json
-            Authorization: Bearer <token>
-
-+ Response 200
-    + Attributes
-        + avatar: `https://...` (string) - Public download URL
-
-### Delete user avatar [DELETE]
-
-Restores user avatar to the default one.
-
-**Endpoint information**
-
-|                         |     |
-|-------------------------|-----|
-| Requires authentication | Yes |
-| Has restricted scope    | No  |
-
-+ Request (multipart/form-data)
-    + Headers
-    
-            Accept: application/json
-            Authorization: Bearer <token>
-
-+ Response 204
-
 # Group Projects
 
 ## Projects [/api/projects]
@@ -461,7 +410,7 @@ Retrieves the details of an existing project.
 
 # Group Categories
 
-## Category [/api/category]
+## Category [/api/categories]
 
 ### Category list [GET]
 
@@ -480,7 +429,7 @@ Returns a category list
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Category])
 
-## Category detail [/api/category/{id}]
+## Category detail [/api/categories/{id}]
 + Request
     + Headers
     
