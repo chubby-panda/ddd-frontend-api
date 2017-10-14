@@ -516,13 +516,12 @@ Post a vote rating for a project
     + Headers
     
             Accept: application/json
-    
+            Content-Type: application/json
+
     + Attributes (User vote)
             
-+ Response 200 (application/json; charset=UTF-8)
++ Response 201 (application/json; charset=UTF-8)
     + Attributes (Vote)
-
-+ Response 404
 
 # Group Pages
 
@@ -737,11 +736,11 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + is_referee: true (boolean, required) - Is referee
 
 ## Vote (Resource)
-+ project (Project)
 + vote: 73 (number, required) Vote rating
-+ date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
++ vote_date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
 + vote_level: user, referee (enum)
-+ user (User info)
++ project_id: (string, required)
++ user_id: (string, required)
 
 ## User vote
 + project_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required) - Short non-sequential url-friendly unique id.
