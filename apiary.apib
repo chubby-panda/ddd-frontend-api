@@ -212,7 +212,24 @@ Allows to retrieve a valid JSON Web Token for username and password.
     + Attributes (Server response)
 
 # Group User
-## Users [/users]
+## Users 
+
+### User list [GET /api/users]
+
+Returns users list
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+| Has restricted scope    | No  |
+
++ Request 
+    + Headers
+    
+            Accept: application/json
+            
++ Response 200 (application/json; charset=UTF-8)
+    + Attributes (array[User info])
 
 ### Retrieve a user [GET /api/users/{id}]
 
@@ -404,7 +421,7 @@ Retrieves the details of an existing project.
             Accept: application/json
 
 + Response 200 (application/json; charset=UTF-8)
-    + Attributes (Project)
+    + Attributes (Project Single)
 
 + Response 404
 
@@ -771,6 +788,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
   + city: `London`(string, required)
   + country: `United Kingdom`(string, required)
   + vat_id: `UK123123123123121` (string, required)
++ votes (array[Project Voted])
 
 ## User info (Resource)
 + email: `john.doe@mail.com` (string, required) - Unique email address of the user.
@@ -793,6 +811,12 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + vote_level: user, referee (enum)
 + project_id (string, required)
 + user_id (string, required)
+
+## Project Voted (Vote)
++ project (Project)
+
+## User Votes (Vote)
++ user (User info)
 
 ## User vote
 + project_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required) - Short non-sequential url-friendly unique id.
@@ -841,9 +865,10 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + dow_award `2016-07-01T15:11:09` (string) - If the project has received won the DOM award, this is the award date.
 + doy_award `2016-07-01T15:11:09`(string) - If the project has received won the DOY award, this is the award date.
 + special_award `2016-07-01T15:11:09.553Z` (string) - If the project has received the special award, this is the award date.
-+ vote_list: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string]) - Vote ids
-+ is_payed: true (boolean) - true if the project has completed payment process
 
+## Project Single (Project)
++ votes (array[User Votes])
++ is_payed: true (boolean) - true if the project has completed payment process
 + payment (Payment)
 
 ## Payment
