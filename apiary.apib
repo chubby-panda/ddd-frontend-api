@@ -752,8 +752,6 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
   + city: `London`(string, required)
   + country: `United Kingdom`(string, required)
   + vat_id: `UK123123123123121` (string, required)
-  + `company_name`: `Magespecialist` (string, required) - Agency business name
-+ user_level:`agency` (string, required)
 + `company_name`: `Holmes & Watson` (string, required) - Agency business name
 + website: `https://it.wikipedia.org/wiki/Arthur_Conan_Doyle` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
@@ -781,15 +779,11 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + role: `Web Designer` (string, required) - User work role
 + abstract: `natus error sit voluptatem accusantium doloremque laudantiu` (string, required) - User abstract
 + avatar (string, optional, nullable) - URL to user avatar.
-+ user_level: user (string, required) - User level
-+ is_referee: false (boolean) - Is referee
-
-## Agency (User info)
 + `company_name`: `Magespecialist` (string, required) - Agency business name
-+ logo: `https://www.magespecialist.it/wp-content/uploads/logo_magesepcialist_header.png` (string, optional, nullable) - URL to company logo.
 + website: `https://www.magespecialist.it` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
 + user_level: agency (string, required) - User level
++ is_referee: false (boolean) - Is referee
 
 ## Referee (User info)
 + is_referee: true (boolean, required) - Is referee
@@ -827,8 +821,8 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + title: `Astonishing Project` (string, required) - project title
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - project HTML description
 + stub: `web` (string, required) - category stub
-+ website: `https://www.magespecialist.it` (string, required) Agency website URL
-+ owner (Agency)
++ website: `https://www.magespecialist.it` (string, required) Project URL
++ owner (User)
 + category (Category)
 + tags (array[Tag])
 + images (array[Image])
