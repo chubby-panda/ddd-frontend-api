@@ -596,9 +596,26 @@ Post a vote rating for a project
 
 # Group Pages
 
-## Pages [/api/page/{id}]
+## Post list [/api/page]
 
-### Retrieve a page [GET]
+### List all pages [GET]
+
+Returns a list of page
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+    
+            Accept: application/json
+            
++ Response 200 (application/json; charset=UTF-8)
+    + Attributes (array[Page])
+
+### Retrieve a page [GET /api/page/{id}]
 
 Retrieves the page content
 
@@ -877,12 +894,13 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + mehtod: 'PayPal' (string, required)
 
 ## Page
-+ parents: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string], optional) - Current Page tree hierarchy
++ parent_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, optional) - Current Page parent
 + title: `Lorem ipsum` (string)
 + content: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?` (string, required) - page HTML content
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium` (string, required) - page abstract
 + stub: `lipsum` (string, required) - page stub
-+ main_image: Image
++ children: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e`, `Gns8EazNP2Ud`, `t7hWQaQV9cVH` (array[string], optional)
 
 ## Post (Page)
-+ publish_date: `2016-07-01T15:11:09` (string) - payment dat
++ publish_date: `2016-07-01T15:11:09` (string) - publish date
++ interviewed (User info)
