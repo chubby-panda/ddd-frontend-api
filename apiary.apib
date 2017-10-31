@@ -596,7 +596,7 @@ Post a vote rating for a project
 
 # Group Pages
 
-## Post list [/api/page]
+## Pages list [/api/page]
 
 ### List all pages [GET]
 
@@ -797,7 +797,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + lastname: `Doe` (string, optional, nullable) - Last name of the user.
 + role: `Web Designer` (string, required) - User work role
 + abstract: `natus error sit voluptatem accusantium doloremque laudantiu` (string, required) - User abstract
-+ avatar (string, optional, nullable) - URL to user avatar.
++ avatar (Image, optional, nullable) - uploaded avatar image
 + is_referee: false (boolean) - Is referee
 + billing_address
   + street: `221B Baker Street` (string, required)
@@ -813,7 +813,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + lastname: `Doe` (string, optional, nullable) - Last name of the user.
 + role: `Web Designer` (string, required) - User work role
 + abstract: `natus error sit voluptatem accusantium doloremque laudantiu` (string, required) - User abstract
-+ avatar (string, optional, nullable) - URL to user avatar.
++ avatar (Image, optional, nullable) -uploaded avatar image
 + `company_name`: `Magespecialist` (string, required) - Agency business name
 + website: `https://www.magespecialist.it` (string, required) Agency website URL
 + description: `Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.` (string, optional, nullable) - Agency brief description
@@ -854,7 +854,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 + title: `Project logo` (string, required) - Image title
 + filename: `logo_magespecialist_header.png` (string, required) - Image filename
 + baseurl: `https://api.ddd.it/public/images/` (string, required) - Full width base url
-+ url: `https://api.ddd.it/public/images/logo_magespecialist_header.png` (string, required) - Full Image URL
++ url: `http://ddd.app/images/tests/avatar/3c38ef40-be46-11e7-b437-1d83d9541285.jpg` (string, required) - Full image url,
 
 ## Project (Resource)
 + publish_date: `2016-07-01T15:11:09` (string)
@@ -903,4 +903,4 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 
 ## Post (Page)
 + publish_date: `2016-07-01T15:11:09` (string) - publish date
-+ interviewed (User info)
++ interviewed (User info, optional)
