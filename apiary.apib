@@ -14,7 +14,13 @@ NOTE: This document is a **work in progress**.
 + Token MUST be provided in `Authorization` header,
 + Toke MUST be provided for each request that requires authentication
 
-## Filtering, Ordering, Pagination
+## Searching, Filtering, Ordering, Pagination
+
+### Searching
+
+This API can make a text search on endponts supporting fulltext search.
+
+For example, when requesting a list of movies from the /movies endpoint, you may search those containing `superman` term with a request like `GET /movies?search=superman`.
 
 ### Filtering
 
@@ -222,6 +228,7 @@ Returns users list
 |-------------------------|-----|
 | Requires authentication | No  |
 | Has restricted scope    | No  |
+| Fulltext enabled        | Yes |
 
 + Request 
     + Headers
@@ -386,6 +393,7 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 |-------------------------|-----|
 | Requires authentication | No  |
 | Has restricted scope    | No  |
+| Fulltext enabled        | Yes |
 
 + Request 
     + Headers
@@ -693,6 +701,7 @@ Retrieves the post content
 |-------------------------|-----|
 | Requires authentication | No  |
 | Has restricted scope    | No  |
+| Fulltext enabled        | Yes |
 
 **Error codes**
 
@@ -755,11 +764,37 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
     + Headers
     
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Image)
 
 + Response 404
+
+# Group Preview search
+
+## Preview Search  [/api/search]
+
+### Search Query [GET]
+
+Returns a list of published post, default sorting is decremental publish date.
+
+Retrieves the post content
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+| Has restricted scope    | No  |
+
++ Request
+    + Headers
+    
+            Accept: application/json
+
+    + Attributes (Search query)            
+        
++ Response 200 (application/json; charset=UTF-8)
+    + Attributes (Preview Search)
+
 
 # Data Structures
 
@@ -921,3 +956,15 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 ## Post (Page)
 + publish_date: `2016-07-01T15:11:09` (string) - publish date
 + interviewed (User info, optional, nullable)
+
+## Search query
++ q: `Lorem ipsum` (string, required)
+
+## Preview Search
++ count
+    + project: 2 (number, required)
+    + user: 1 (number, required)
+    + post: 5 (number, required)
++ project (array[Project])
++ user (array[User info])
++ post (array[Post])
