@@ -772,7 +772,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 
 # Group Preview search
 
-## Preview Search  [/api/search]
+## Preview Search  [/api/search/?q={term}]
 
 ### Search Query [GET]
 
@@ -790,8 +790,9 @@ Retrieves the post content
     
             Accept: application/json
 
-    + Attributes (Search query)            
-        
++ Parameters
+    + term: `Lorem ipsum` (string, required)
+    
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Preview Search)
 
@@ -956,9 +957,6 @@ Retrieves the post content
 ## Post (Page)
 + publish_date: `2016-07-01T15:11:09` (string) - publish date
 + interviewed (User info, optional, nullable)
-
-## Search query
-+ q: `Lorem ipsum` (string, required)
 
 ## Preview Search
 + count
