@@ -212,7 +212,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
     + Headers
     
             Accept: application/json
-            Authentication: Bearer <token>
+            Authorization: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Server response)
@@ -257,7 +257,7 @@ Retrieves the details of an existing user.
     + Headers
     
             Accept: application/json
-            Authentication: Bearer <token>
+            Authorization: Bearer <token>
 
 + Parameters
     + id: `65973ae5-9ad1-3f16-aca2-3ba9e950ce13` (string) - user id.
@@ -320,7 +320,7 @@ Retrieves the profile of the current user.
     + Headers
     
             Accept: application/json
-            Authentication: Bearer <token>
+            Authorization: Bearer <token>
 
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (User full)
@@ -340,7 +340,7 @@ Updates a profile of the current user setting the values of the parameters passe
     + Headers
     
             Accept: application/json
-            Authentication: Bearer <token>
+            Authorization: Bearer <token>
 
     + Attributes
         + name: `Ben` (string) - First name of the user.
@@ -373,7 +373,7 @@ After password is changed all access tokens issued for this user prior to passwo
     + Headers
     
             Accept: application/json
-            Authentication: Bearer <token>
+            Authorization: Bearer <token>
 
     + Attributes
         + old_password: `secret` (string, required)
