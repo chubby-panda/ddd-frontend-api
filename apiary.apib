@@ -182,9 +182,9 @@ Allows to retrieve a valid JSON Web Token for username and password.
 
 + Request (application/json)
     + Headers
-    
+
             Accept: application/json
-                
+
     + Attributes (OAuth bearer grant request)
 
 
@@ -196,9 +196,9 @@ Allows to retrieve a valid JSON Web Token for username and password.
 
 + Request (application/json)
     + Headers
-    
+
             Accept: application/json
-                
+
     + Attributes (OAuth bearer token refresh)
 
 
@@ -210,7 +210,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
 ### Status [GET]
 + Request
     + Headers
-    
+
             Accept: application/json
             Authorization: Bearer <token>
 
@@ -218,7 +218,7 @@ Allows to retrieve a valid JSON Web Token for username and password.
     + Attributes (Server response)
 
 # Group User
-## Users 
+## Users
 
 ### User list [GET /api/users]
 
@@ -230,11 +230,11 @@ Returns users list
 | Has restricted scope    | No  |
 | Fulltext enabled        | Yes |
 
-+ Request 
++ Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[User info])
 
@@ -255,13 +255,13 @@ Retrieves the details of an existing user.
 
 + Request
     + Headers
-    
+
             Accept: application/json
             Authorization: Bearer <token>
 
 + Parameters
     + id: `65973ae5-9ad1-3f16-aca2-3ba9e950ce13` (string) - user id.
-    
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (User info)
 
@@ -293,9 +293,9 @@ After successful registration a confirmation email MUST be sent to provided addr
 
 + Request (application/json)
     + Headers
-    
+
             Accept: application/json
-            
+
     + Attributes (User Request)
 
 + Response 201 (application/json; charset=UTF-8)
@@ -318,7 +318,7 @@ Retrieves the profile of the current user.
 
 + Request
     + Headers
-    
+
             Accept: application/json
             Authorization: Bearer <token>
 
@@ -338,7 +338,7 @@ Updates a profile of the current user setting the values of the parameters passe
 
 + Request
     + Headers
-    
+
             Accept: application/json
             Authorization: Bearer <token>
 
@@ -371,7 +371,7 @@ After password is changed all access tokens issued for this user prior to passwo
 
 + Request (application/json)
     + Headers
-    
+
             Accept: application/json
             Authorization: Bearer <token>
 
@@ -396,11 +396,11 @@ Returns a list of votable projects. Default sorting is decremental expire date.
 | Has restricted scope    | No  |
 | Fulltext enabled        | Yes |
 
-+ Request 
++ Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Project])
 
@@ -426,7 +426,7 @@ Retrieves the details of an existing project.
 
 + Request
     + Headers
-    
+
             Accept: application/json
 
 + Response 200 (application/json; charset=UTF-8)
@@ -449,18 +449,18 @@ Returns a category list
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Category])
 
 ## Category detail [/api/categories/{id}]
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - category id.
 
@@ -480,9 +480,9 @@ Retrieves the category details and all related projects.
 | `400` | `1000`  | Referenced resource not found |
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Category)
 
@@ -503,18 +503,18 @@ Returns a tag list
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Tag])
 
 ## Tags detail [/api/tags/{id}]
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - category id.
 
@@ -534,9 +534,9 @@ Retrieves the tag details and all related projects.
 | `400` | `1000`  | Referenced resource not found |
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Tag)
 
@@ -547,7 +547,7 @@ Retrieves the tag details and all related projects.
 ## Vote info [/api/votes]
 + Request
     + Headers
-    
+
             Accept: application/json
 
 ### Vote list [GET]
@@ -561,12 +561,12 @@ Returns a vote list
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Vote])
-            
+
 ### Retrieve a vote [GET /api/votes/{id}]
 
 Retrieves a single vote
@@ -584,12 +584,12 @@ Retrieves a single vote
 
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - vote id.
-    
+
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Vote)
 
@@ -611,14 +611,75 @@ Post a vote rating for a project
 | `400` | `1000`  | Referenced resource not found |
 + Request
     + Headers
-    
+
             Accept: application/json
             Content-Type: application/json
 
     + Attributes (User vote)
-            
+
 + Response 201 (application/json; charset=UTF-8)
     + Attributes (Vote)
+
+# Group Annual Reward Votes
+
+## Annual Reward Vote info [/api/annualvotes]
++ Request
+    + Headers
+
+            Accept: application/json
+
+### Retrieve a vote [GET /api/annualvotes/{id}]
+
+Retrieves a single vote for annual reward
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes  |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
+
++ Parameters
+    + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - vote id.
+
++ Request
+    + Headers
+
+            Accept: application/json
+
++ Response 200 (application/json; charset=UTF-8)
+    + Attributes (AnnualVote)
+
++ Response 404
+
+### Make a vote for annual reward [POST]
+
+Post a annual vote preference for a project
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes  |
+| Has restricted scope    | No  |
+
+**Error codes**
+
+|       |         |                               |
+|-------|---------| ----------------------------- |
+| `400` | `1000`  | Referenced resource not found |
++ Request
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (User annual vote)
+
++ Response 201 (application/json; charset=UTF-8)
+    + Attributes (AnnualVote)
 
 # Group Pages
 
@@ -635,9 +696,9 @@ Returns a list of page
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Page])
 
@@ -658,9 +719,9 @@ Retrieves the page content
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - page id.
 
@@ -686,9 +747,9 @@ Retrieves the post content
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (array[Post])
 
@@ -712,9 +773,9 @@ Retrieves the post content
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - post id.
 
@@ -729,9 +790,9 @@ Retrieves the post content
 
 + Request
     + Headers
-    
+
             Accept: application/json
-            
+
 + Parameters
     + id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string) - image id.
 
@@ -763,7 +824,7 @@ E.g. `http://ddd.app/images/crops/avatar/5b141780-af33-11e7-b107-33f3ff5354b7-20
 
 + Request
     + Headers
-    
+
             Accept: application/json
 
 + Response 200 (application/json; charset=UTF-8)
@@ -788,12 +849,12 @@ Retrieves the post content
 
 + Request
     + Headers
-    
+
             Accept: application/json
 
 + Parameters
     + term: `Lorem ipsum` (string, required)
-    
+
 + Response 200 (application/json; charset=UTF-8)
     + Attributes (Preview Search)
 
@@ -895,6 +956,18 @@ Retrieves the post content
 + project_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required) - Short non-sequential url-friendly unique id.
 + vote: 73 (number, required) Vote rating
 
+## AnnualVote (Resource)
++ vote_date: `2016-07-01T15:11:09.553Z` (string) - Vote timestamp.
++ project (Project, required)
++ user (User info, required)
++ category_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required)
++ edition: `doy2018` (string, required)
+
+## User annual vote
++ project_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required) - Short non-sequential url-friendly unique id.
++ category_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, required)
++ edition: `doy2018` (string, required)
+
 ## Category (Resource)
 + title: `Web/App` (string, required) - category title
 + stub: `web` (string, required) - category stub
@@ -942,6 +1015,12 @@ Retrieves the post content
 ## Project Single (Project)
 + votes (array[User Votes])
 + is_payed: true (boolean) - true if the project has completed payment process
++ payment (Payment)
+
+## Payment
++ date: `2016-07-01T15:11:09` (string) - payment date
++ status: completed, canceled (enum)
++ mehtod: 'PayPal' (string, required)
 
 ## Page
 + parent_id: `6eb1cb93-9874-359a-9f32-ca76e8adaa4e` (string, optional, nullable) - Current Page parent
